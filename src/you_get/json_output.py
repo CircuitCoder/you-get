@@ -11,7 +11,11 @@ def output(video_extractor, pretty_print=True):
     out['title'] = ve.title
     out['site'] = ve.name
     out['streams'] = ve.streams
-    out['dash_streams'] = ve.dash_streams
+    if hasattr(ve, 'dash_streams'):
+        out['dash_streams'] = ve.dash_streams
+    else:
+        out['dash_streams'] = []
+
     try:
         if ve.audiolang:
             out['audiolang'] = ve.audiolang
